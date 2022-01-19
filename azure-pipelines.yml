@@ -7,16 +7,6 @@ pool:
 variables:
   subscription: Rishu - Service Connection
   resourceGroup: resourcegroup-tfstate
-- task: TerraformTaskV2@2
-  inputs:
-    provider: 'azurerm'
-    command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/skip-step'
-    backendServiceArm: 'Rishu - Service Connection'
-    backendAzureRmResourceGroupName: 'resourcegroup-tfstate'
-    backendAzureRmStorageAccountName: 'terraformtfstate0101'
-    backendAzureRmContainerName: 'tfstate'
-    backendAzureRmKey: 'terraform.tfstate'
   storageAccount: terraformtfstate0101
   container: tfstate
   tfstateFile: terraform.tfstate
