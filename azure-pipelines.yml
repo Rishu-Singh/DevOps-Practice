@@ -5,16 +5,18 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  subscription: ITS Global Azure DevOps(22bcbdf3-c74f-4423-994c-fc06edb10298)
-  resourceGroup: - task: TerraformTaskV2@2
+  subscription: Rishu - Service Connection
+  resourceGroup: resourcegroup-tfstate
+- task: TerraformTaskV2@2
   inputs:
     provider: 'azurerm'
     command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/skip-step'
     backendServiceArm: 'Rishu - Service Connection'
-    backendAzureRmResourceGroupName: '$(resourcegroup-tfstate)'
-    backendAzureRmStorageAccountName: '$(storageAccount)'
-    backendAzureRmContainerName: '$(container)'
-    backendAzureRmKey: '$(tfstateFile)'
+    backendAzureRmResourceGroupName: 'resourcegroup-tfstate'
+    backendAzureRmStorageAccountName: 'terraformtfstate0101'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'terraform.tfstate'
   storageAccount: terraformtfstate0101
   container: tfstate
   tfstateFile: terraform.tfstate
